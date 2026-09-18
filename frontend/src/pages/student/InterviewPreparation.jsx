@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import axios from 'axios';
+import api from '../services/api';
 import {
   Sparkles,
   Brain,
@@ -30,17 +30,14 @@ const InterviewPreparation = () => {
 
       const token = localStorage.getItem('token');
 
-      const response = await axios.get(
-        'http://localhost:8080/api/interview/questions',
-        {
-          params: {
-            role: role
-          },
-          headers: {
-            Authorization: `Bearer ${token}`
-          }
-        }
-      );
+      const response = await api.get(
+  '/interview/questions',
+  {
+    params: {
+      role: role
+    }
+  }
+);
 
       setQuestions(response.data || []);
     } catch (err) {
