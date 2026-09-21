@@ -1,6 +1,8 @@
 package com.pminternship.backend.security;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -52,6 +54,9 @@ public class SecurityConfig {
                         // Allow CORS preflight requests
                         .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
 
+                        // Health check endpoints
+                        .requestMatchers("/", "/health", "/api/health").permitAll()
+
                         // Authentication endpoints
                         .requestMatchers("/api/auth/**").permitAll()
 
@@ -61,6 +66,7 @@ public class SecurityConfig {
                         // Public internships
                         .requestMatchers(
                                 HttpMethod.GET,
+                                "/api/internships",
                                 "/api/internships/**"
                         ).permitAll()
 
@@ -117,14 +123,25 @@ public class SecurityConfig {
 
         CorsConfiguration configuration = new CorsConfiguration();
 
-        // React frontend
-       configuration.setAllowedOrigins(Arrays.asList(
-        "http://localhost:3000",
-        "http://127.0.0.1:3000",
-        "http://localhost:3001",
-        "http://127.0.0.1:3001",
-        "https://pm-internship-recommendation-frontend.onrender.com"
-));
+        List<String> originPatterns = new ArrayList<>(Arrays.asList(
+                "http://localhost:*",
+                "http://127.0.0.1:*",
+                "https://*.web.app",
+                "https://*.firebaseapp.com",
+                "https://pm-internship-recommendation-frontend.onrender.com"
+        ));
+
+        String customOrigins = System.getenv("CORS_ALLOWED_ORIGINS");
+        if (customOrigins != null && !customOrigins.trim().isEmpty()) {
+            for (String o : customOrigins.split(",")) {
+                String trimmed = o.trim();
+                if (!trimmed.isEmpty() && !originPatterns.contains(trimmed)) {
+                    originPatterns.add(trimmed);
+                }
+            }
+        }
+
+        configuration.setAllowedOriginPatterns(originPatterns);
 
         configuration.setAllowedMethods(Arrays.asList(
                 "GET",
