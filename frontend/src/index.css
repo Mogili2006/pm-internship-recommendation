@@ -567,6 +567,31 @@ tr:hover {
   display: flex;
   align-items: center;
 }
+/* Password Show/Hide Eye Icon */
+.password-toggle {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  border: none;
+  background: transparent;
+  color: #7890b5;
+  cursor: pointer;
+  padding: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+}
+
+.password-toggle:hover {
+  color: #3659a8;
+}
+
+.input-wrapper .form-control {
+  padding-right: 45px;
+}
+
 
 
 .input-wrapper svg {

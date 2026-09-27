@@ -5,7 +5,9 @@ import {
   LogIn,
   Mail,
   Lock,
-  AlertCircle
+  AlertCircle,
+  Eye,
+  EyeOff
 } from 'lucide-react';
 
 import image_intern from '../../assets/image_intern.png';
@@ -13,6 +15,7 @@ import image_intern from '../../assets/image_intern.png';
 const LoginPage = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
 
@@ -85,6 +88,7 @@ const LoginPage = () => {
 
           <form onSubmit={handleSubmit}>
 
+            {/* EMAIL */}
             <div className="form-group">
               <label className="form-label">
                 Email Address
@@ -104,6 +108,7 @@ const LoginPage = () => {
               </div>
             </div>
 
+            {/* PASSWORD */}
             <div className="form-group">
               <label className="form-label">
                 Password
@@ -113,16 +118,33 @@ const LoginPage = () => {
                 <Lock size={19} />
 
                 <input
-                  type="password"
+                  type={showPassword ? 'text' : 'password'}
                   className="form-control"
                   placeholder="Enter your password"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   required
                 />
+
+                {/* SHOW / HIDE PASSWORD */}
+                <button
+                  type="button"
+                  className="password-toggle"
+                  onClick={() => setShowPassword(!showPassword)}
+                  aria-label={
+                    showPassword ? 'Hide password' : 'Show password'
+                  }
+                >
+                  {showPassword ? (
+                    <EyeOff size={19} />
+                  ) : (
+                    <Eye size={19} />
+                  )}
+                </button>
               </div>
             </div>
 
+            {/* LOGIN BUTTON */}
             <button
               type="submit"
               className="btn btn-primary auth-submit"
@@ -133,6 +155,7 @@ const LoginPage = () => {
 
           </form>
 
+          {/* REGISTER */}
           <div className="auth-switch">
             Don't have a student account?{' '}
             <Link to="/register">
@@ -140,6 +163,7 @@ const LoginPage = () => {
             </Link>
           </div>
 
+          {/* DEMO CREDENTIALS */}
           <div className="demo-credentials">
             <strong>Demo Credentials</strong>
 
