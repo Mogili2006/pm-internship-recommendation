@@ -548,25 +548,27 @@ tr:hover {
   margin-bottom: 20px;
 }
 
-
 .form-label {
   display: block;
-
   margin-bottom: 8px;
-
   font-size: 14px;
   font-weight: 600;
-
   color: #101828;
 }
 
-
 .input-wrapper {
   position: relative;
-
   display: flex;
   align-items: center;
 }
+
+.input-wrapper > svg {
+  position: absolute;
+  left: 15px;
+  color: #8da1bd;
+  pointer-events: none;
+}
+
 /* Password Show/Hide Eye Icon */
 .password-toggle {
   position: absolute;
@@ -584,56 +586,34 @@ tr:hover {
   z-index: 2;
 }
 
+.password-toggle svg {
+  position: static !important;
+  left: auto !important;
+  color: inherit;
+  pointer-events: none;
+}
+
 .password-toggle:hover {
   color: #3659a8;
 }
 
 .input-wrapper .form-control {
-  padding-right: 45px;
-}
-
-
-
-.input-wrapper svg {
-  position: absolute;
-
-  left: 15px;
-
-  color: #8da1bd;
-
-  pointer-events: none;
-}
-
-
-.input-wrapper .form-control {
   width: 100%;
-
-  padding: 13px 15px 13px 45px;
-
+  padding: 13px 45px 13px 45px;
   border: 1px solid #d7e1ef;
-
   border-radius: 10px;
-
   background: #f5f8fd;
-
   font-size: 15px;
-
   outline: none;
-
   box-sizing: border-box;
-
   transition: 0.2s;
 }
 
-
 .input-wrapper .form-control:focus {
   border-color: #3157a6;
-
   background: #ffffff;
-
   box-shadow: 0 0 0 3px rgba(49, 87, 166, 0.1);
 }
-
 
 /* =========================================
    LOGIN BUTTON

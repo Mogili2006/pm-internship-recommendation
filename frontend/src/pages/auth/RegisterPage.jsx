@@ -7,7 +7,9 @@ import {
   CheckCircle,
   Mail,
   Lock,
-  User
+  User,
+  Eye,
+  EyeOff
 } from 'lucide-react';
 
 import image_intern from '../../assets/image_intern.png';
@@ -17,6 +19,10 @@ const RegisterPage = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
+
+  // Password visibility states
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
   const [error, setError] = useState('');
   const [success, setSuccess] = useState(false);
@@ -127,6 +133,7 @@ const RegisterPage = () => {
 
           <form onSubmit={handleSubmit}>
 
+            {/* FULL NAME */}
             <div className="form-group">
               <label className="form-label">
                 Full Name
@@ -146,6 +153,7 @@ const RegisterPage = () => {
               </div>
             </div>
 
+            {/* EMAIL */}
             <div className="form-group">
               <label className="form-label">
                 Email Address
@@ -165,6 +173,7 @@ const RegisterPage = () => {
               </div>
             </div>
 
+            {/* PASSWORD */}
             <div className="form-group">
               <label className="form-label">
                 Password
@@ -174,16 +183,32 @@ const RegisterPage = () => {
                 <Lock size={19} />
 
                 <input
-                  type="password"
+                  type={showPassword ? 'text' : 'password'}
                   className="form-control"
                   placeholder="At least 6 characters"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   required
                 />
+
+                <button
+                  type="button"
+                  className="password-toggle"
+                  onClick={() => setShowPassword(!showPassword)}
+                  aria-label={
+                    showPassword ? 'Hide password' : 'Show password'
+                  }
+                >
+                  {showPassword ? (
+                    <EyeOff size={19} />
+                  ) : (
+                    <Eye size={19} />
+                  )}
+                </button>
               </div>
             </div>
 
+            {/* CONFIRM PASSWORD */}
             <div className="form-group">
               <label className="form-label">
                 Confirm Password
@@ -193,16 +218,36 @@ const RegisterPage = () => {
                 <Lock size={19} />
 
                 <input
-                  type="password"
+                  type={showConfirmPassword ? 'text' : 'password'}
                   className="form-control"
                   placeholder="Re-enter password"
                   value={confirmPassword}
                   onChange={(e) => setConfirmPassword(e.target.value)}
                   required
                 />
+
+                <button
+                  type="button"
+                  className="password-toggle"
+                  onClick={() =>
+                    setShowConfirmPassword(!showConfirmPassword)
+                  }
+                  aria-label={
+                    showConfirmPassword
+                      ? 'Hide confirm password'
+                      : 'Show confirm password'
+                  }
+                >
+                  {showConfirmPassword ? (
+                    <EyeOff size={19} />
+                  ) : (
+                    <Eye size={19} />
+                  )}
+                </button>
               </div>
             </div>
 
+            {/* REGISTER BUTTON */}
             <button
               type="submit"
               className="btn btn-primary auth-submit"
@@ -215,6 +260,7 @@ const RegisterPage = () => {
 
           </form>
 
+          {/* LOGIN LINK */}
           <div className="auth-switch">
             Already have an account?{' '}
             <Link to="/login">
