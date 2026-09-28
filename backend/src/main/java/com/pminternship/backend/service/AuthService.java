@@ -1,5 +1,11 @@
 package com.pminternship.backend.service;
 
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
 import com.pminternship.backend.dto.LoginRequest;
 import com.pminternship.backend.dto.LoginResponse;
 import com.pminternship.backend.dto.RegisterRequest;
@@ -11,11 +17,6 @@ import com.pminternship.backend.exception.ResourceNotFoundException;
 import com.pminternship.backend.repository.StudentProfileRepository;
 import com.pminternship.backend.repository.UserRepository;
 import com.pminternship.backend.security.JwtService;
-import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class AuthService {
@@ -72,4 +73,16 @@ public class AuthService {
 
         return new LoginResponse(jwtToken, user.getId(), user.getName(), user.getEmail(), user.getRole());
     }
+    @Transactional
+public void changePasswordWithoutResetLink(String email, String newPassword) {
+
+    User user = userRepository.findByEmail(email)
+            .orElseThrow(() ->
+                    new ResourceNotFoundException("No account found with this email")
+            );
+
+    user.setPassword(passwordEncoder.encode(newPassword));
+
+    userRepository.save(user);
+}
 }

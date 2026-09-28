@@ -1,8 +1,18 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate, Link } from 'react-router-dom';
 import api from '../../services/api';
-import { ArrowLeft, Send, Bookmark, ExternalLink, Calendar, MapPin, Briefcase, DollarSign, CheckCircle } from 'lucide-react';
-
+import {
+  ArrowLeft,
+  Send,
+  Bookmark,
+  ExternalLink,
+  Calendar,
+  MapPin,
+  Briefcase,
+  DollarSign,
+  CheckCircle,
+  FileText
+} from 'lucide-react';
 const InternshipDetail = () => {
   const { id } = useParams();
   const navigate = useNavigate();
@@ -122,9 +132,29 @@ const InternshipDetail = () => {
               <CheckCircle size={18} /> Already Applied
             </button>
           ) : (
-            <button onClick={handleApply} className="btn btn-primary">
-              <Send size={18} /> Apply Now
-            </button>
+           <div
+  style={{
+    display: 'flex',
+    gap: '0.5rem',
+    flexWrap: 'wrap'
+  }}
+>
+  <button
+    onClick={handleApply}
+    className="btn btn-primary"
+  >
+    <Send size={18} />
+    Apply Manually
+  </button>
+
+  <Link
+    to={`/student/resume-recommendations?internshipId=${internship.id}`}
+    className="btn btn-secondary"
+  >
+    <FileText size={18} />
+    Apply Through Resume
+  </Link>
+</div>
           )}
 
           <button onClick={handleToggleSave} className={`btn ${isSaved ? 'btn-success' : 'btn-secondary'}`}>

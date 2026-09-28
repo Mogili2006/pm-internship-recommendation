@@ -13,6 +13,8 @@ import InternshipDetail from "./pages/student/InternshipDetail";
 import StudentRecommendations from "./pages/student/StudentRecommendations";
 import RecommendationDetail from "./pages/student/RecommendationDetail";
 import InterviewPreparation from "./pages/student/InterviewPreparation";
+import ForgotPasswordPage from "./pages/auth/ForgotPasswordPage";
+import ResumeRecommendations from "./pages/student/ResumeRecommendations";
 
 function App() {
   return (
@@ -23,6 +25,10 @@ function App() {
       <Route path="/about" element={<AboutPage />} />
       <Route path="/login" element={<LoginPage />} />
       <Route path="/register" element={<RegisterPage />} />
+      <Route
+  path="/forgot-password"
+  element={<ForgotPasswordPage />}
+     />
 
       {/* Student pages */}
       <Route
@@ -34,7 +40,10 @@ function App() {
         path="/student/profile"
         element={<StudentProfile />}
       />
-
+       <Route
+  path="/student/resume-recommendations"
+  element={<ResumeRecommendations />}
+/>
       <Route
         path="/student/internships"
         element={<StudentInternships />}

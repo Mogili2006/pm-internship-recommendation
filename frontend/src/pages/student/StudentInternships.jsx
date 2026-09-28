@@ -1,8 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import api from '../../services/api';
-import { Search, Briefcase, Bookmark, ArrowRight, MapPin, DollarSign, Clock } from 'lucide-react';
-
+import {
+  Search,
+  Briefcase,
+  Bookmark,
+  ArrowRight,
+  MapPin,
+  DollarSign,
+  Clock,
+  FileText
+} from 'lucide-react';
 const StudentInternships = () => {
   const [internships, setInternships] = useState([]);
   const [savedIds, setSavedIds] = useState(new Set());
@@ -79,7 +87,15 @@ const StudentInternships = () => {
           Browse PM Scheme Internships
         </h1>
         <p style={{ color: 'var(--text-muted)' }}>Explore active opportunities offered by top corporate partners under PM Scheme.</p>
-
+          <div style={{ marginTop: '1rem' }}>
+  <Link
+    to="/student/resume-recommendations"
+    className="btn btn-primary"
+  >
+    <FileText size={18} />
+    Get Recommendations From Resume
+  </Link>
+</div>
         <form onSubmit={handleSearchSubmit} style={{ marginTop: '1.25rem' }}>
           <div className="grid grid-cols-4" style={{ gap: '0.75rem', marginBottom: '0.75rem' }}>
             <input
