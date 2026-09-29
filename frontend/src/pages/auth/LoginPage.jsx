@@ -180,21 +180,7 @@ const LoginPage = () => {
               Register Here
             </Link>
           </div>
-
-          {/* DEMO CREDENTIALS */}
-          <div className="demo-credentials">
-            <strong>Demo Credentials</strong>
-
-            <div>
-              Student: <code>student@example.com</code> /{' '}
-              <code>student123</code>
-            </div>
-
-            <div>
-              Admin: <code>admin@pminternship.gov.in</code> /{' '}
-              <code>admin123</code>
-            </div>
-          </div>
+        
 
         </div>
       </div>

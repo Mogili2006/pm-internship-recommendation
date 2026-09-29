@@ -5,11 +5,7 @@ import {
   ArrowLeft,
   Send,
   Bookmark,
-  ExternalLink,
-  Calendar,
-  MapPin,
-  Briefcase,
-  DollarSign,
+  BookOpen,
   CheckCircle,
   FileText
 } from 'lucide-react';
@@ -154,6 +150,13 @@ const InternshipDetail = () => {
     <FileText size={18} />
     Apply Through Resume
   </Link>
+  <Link
+  to={`/student/preparation-plan?internshipId=${internship.id}`}
+  className="btn btn-secondary"
+>
+  <BookOpen size={18} />
+  Learn Missing Skills
+</Link>
 </div>
           )}
 

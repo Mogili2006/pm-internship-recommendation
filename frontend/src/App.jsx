@@ -15,6 +15,7 @@ import RecommendationDetail from "./pages/student/RecommendationDetail";
 import InterviewPreparation from "./pages/student/InterviewPreparation";
 import ForgotPasswordPage from "./pages/auth/ForgotPasswordPage";
 import ResumeRecommendations from "./pages/student/ResumeRecommendations";
+import PreparationPlan from "./pages/student/PreparationPlan";
 
 function App() {
   return (
@@ -48,7 +49,10 @@ function App() {
         path="/student/internships"
         element={<StudentInternships />}
       />
-
+       <Route
+  path="/student/preparation-plan"
+  element={<PreparationPlan />}
+/>
       <Route
         path="/student/internships/:id"
         element={<InternshipDetail />}

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate, Link } from 'react-router-dom';
 import api from '../../services/api';
 import ScoreBadge from '../../components/ScoreBadge';
-import { Sparkles, CheckCircle, AlertCircle, Bookmark, Send, ArrowLeft, Target, BookOpen, Lightbulb, ExternalLink } from 'lucide-react';
+import { Sparkles, CheckCircle, AlertCircle, Bookmark, Send, ArrowLeft, Target, BookOpen, Lightbulb } from 'lucide-react';
 
 const RecommendationDetail = () => {
   const { id } = useParams();
@@ -124,11 +124,7 @@ const RecommendationDetail = () => {
             <Bookmark size={18} /> {isSaved ? 'Saved to Bookmarks' : 'Bookmark Internship'}
           </button>
 
-          {internship.applicationUrl && (
-            <a href={internship.applicationUrl} target="_blank" rel="noreferrer" className="btn btn-secondary">
-              Official MCA Portal <ExternalLink size={16} />
-            </a>
-          )}
+          
         </div>
       </div>
 
